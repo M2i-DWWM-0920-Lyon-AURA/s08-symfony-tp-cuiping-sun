@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MainController!{% endblock %}
+
+{% block body %}
+
+<h1>Page d'acceuil</h1>
+<div class="container">
+    <div class="card-group">
+        {% for meal in meals %}
+            <div class="card">
+                <img src="{{ meal.image }}" class="card-img-top" alt="{{ meal.name }}">
+                <div class="card-body">
+                    <h5 class="card-title"><a href="{{ path('meal_single', {id: meal.id}) }}">{{ meal.name }}</a></h5>
+                    <p class="card-text"><small class="text-muted">{{ meal.area }}</small></p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
