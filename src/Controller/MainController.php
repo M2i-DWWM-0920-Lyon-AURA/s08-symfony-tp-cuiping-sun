@@ -14,10 +14,6 @@ class MainController extends AbstractController
      */
     public function index(MealRepository $Meal): Response
     {
-        /* $data0 = file_get_contents('https://www.themealdb.com/api/json/v1/1/lookup.php?i=52770');
-        $json_data0 = json_decode($data0, true);
-        $data0 = $json_data0['meals'][0];
-        dd($data0); */
         $meals = $Meal->findAll();
         return $this->render('main/index.html.twig', [
             'meals' => $meals,
