@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 use App\Repository\MealRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -20,21 +22,50 @@ class Meal
     private $id;
 
     /**
+     * @Assert\NotBlank(message = "Name cannot be empty.")
+     * @Assert\Length(
+     *          min = 1,
+     *          max = 50,
+     *          minMessage = "Name must be at least {{ limit }} characters long",
+     *          maxMessage = "Name cannot be longer than {{ limit }} characters",
+     * )
+     * @Assert\NotNull
      * @ORM\Column(type="string", length=255)
      */
     private $name;
 
     /**
+     * @Assert\NotBlank(message = "Category cannot be empty.")
+     * @Assert\Length(
+     *          min = 1,
+     *          max = 50,
+     *          minMessage = "Category must be at least {{ limit }} characters long",
+     *          maxMessage = "Category cannot be longer than {{ limit }} characters",
+     * )
+     * @Assert\NotNull
      * @ORM\Column(type="string", length=255)
      */
     private $category;
 
     /**
+     * @Assert\NotBlank(message = "Area cannot be empty.")
+     * @Assert\Length(
+     *          min = 1,
+     *          max = 50,
+     *          minMessage = "Area must be at least {{ limit }} characters long",
+     *          maxMessage = "Area cannot be longer than {{ limit }} characters",
+     * )
+     * @Assert\NotNull
      * @ORM\Column(type="string", length=255)
      */
     private $area;
 
     /**
+     * @Assert\NotBlank(message = "Image cannot be empty.")
+     * @Assert\Url(
+     *          message = "The url '{{ value }}' is not a valid url",
+     * )
+     * @Assert\NotNull
      * @ORM\Column(type="string", length=255)
      */
     private $image;

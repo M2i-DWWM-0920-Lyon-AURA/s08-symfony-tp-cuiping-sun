@@ -5,15 +5,17 @@
 {% block body %}
 
 <div class="container mt-5">
-    <div class="card-group">
+    <div class="row row-cols-1 row-cols-md-3">
         {% for meal in meals %}
-            <div class="card">
-                <img src="{{ meal.image }}" class="card-img-top" alt="{{ meal.name }}">
+        <div class="col mb-4">
+            <div class="card h-100">
+                <a href="{{ path('meal_single', {id: meal.id}) }}"><img src="{{ meal.image }}" class="card-img-top" alt="{{ meal.name }}"></a>
                 <div class="card-body">
                     <h5 class="card-title"><a href="{{ path('meal_single', {id: meal.id}) }}">{{ meal.name }}</a></h5>
                     <p class="card-text"><small class="text-muted">{{ meal.area }}</small></p>
                 </div>
             </div>
+        </div>
         {% endfor %}
     </div>
 </div>

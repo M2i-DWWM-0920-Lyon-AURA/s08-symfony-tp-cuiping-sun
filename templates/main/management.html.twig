@@ -4,10 +4,15 @@
 
 {% block body %}
 <div class="container">
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
     <div class="d-flex justify-content-between align-items-center">
         <h4 class="mb-4"><strong>Meal List</strong></h4>
         <div>
-            <button type="button" class="btn btn-info btn-sm px-3 py-2"><i class="fas fa-plus mr-2"></i>Create</button>
+            <a href="{{ path('meal_create')}}"><button type="button" class="btn btn-outline-dark btn-sm px-3 py-2"><i class="fas fa-plus mr-2"></i>Create</button></a>
         </div>
     </div>
     <table class="table table-hover">
@@ -18,6 +23,8 @@
                 <th scope="col">Category</th>
                 <th scope="col">Area</th>
                 <th scope="col">Image</th>
+                <th scope="col">Actions</th>
+
             </tr>
         </thead>
         <tbody>
@@ -28,6 +35,18 @@
                 <td>{{ meal.category }}</td>
                 <td>{{ meal.area }}</td>
                 <td><img src="{{ meal.image }}" alt="{{ meal.name }}"height="25"></td>
+                <td class="d-flex">
+                <a href="{{ path('meal_update', {id: meal.id})}}">
+                    <button type="button" class="btn btn-warning btn-sm mr-2">
+                        <i class="fas fa-highlighter"></i>
+                    </button>
+                </a>
+                <form method="post" action="{{ path('meal_delete', {id: meal.id}) }}" onsubmit="return confirm('Do you want to delete this meal ?')">
+                    <button type="submit" class="btn btn-danger btn-sm">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </form>
+                </td>
             </tr>
         {% endfor %}
         </tbody>
