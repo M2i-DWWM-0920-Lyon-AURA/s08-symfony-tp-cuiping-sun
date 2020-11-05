@@ -17,6 +17,21 @@ class MainController extends AbstractController
         $meals = $Meal->findAll();
         return $this->render('main/index.html.twig', [
             'meals' => $meals,
+            'actived_menu' => 'home',
         ]);
     }
+
+    /**
+     * @Route("/management", name="main_management", methods={"GET"})
+     */
+    public function management(MealRepository $Meal): Response
+    {
+        $meals = $Meal->findAll();
+        return $this->render('main/management.html.twig', [
+            'meals' => $meals,
+            'actived_menu' => 'management',
+
+        ]);
+    }
+
 }
